@@ -1,10 +1,22 @@
 // script.js
 
-// Obtener el iframe del video
-const videoFrame = document.getElementById('videoFrame');
+document.addEventListener('DOMContentLoaded', function() {
+    // Crear elemento de audio
+    var audio = new Audio('loadsoundtrident.mp3'); // Ruta al archivo de sonido
 
-// Detectar cuando el video termina
-videoFrame.addEventListener('ended', function() {
-    // Reiniciar el video
-    videoFrame.src = videoFrame.src.replace('&autoplay=1', '') + '&autoplay=1';
+    // Simular tiempo de carga (ajustado a 4 segundos)
+    setTimeout(function() {
+        // Reproducir sonido al finalizar la carga
+        audio.play();
+
+        // Ocultar overlay de carga
+        var overlay = document.querySelector('.overlay');
+        overlay.classList.add('fade-out');
+
+        // Detectar final de animación de fade-out
+        overlay.addEventListener('animationend', function() {
+            // Ocultar completamente el overlay
+            overlay.style.display = 'none';
+        });
+    }, 4000); // Tiempo de carga simulado en milisegundos (4000 = 4 segundos)
 });
